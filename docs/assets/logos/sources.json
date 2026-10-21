@@ -1,0 +1,33 @@
+{
+  "baidu": {
+    "page": "https://home.baidu.com/media_resource/show_detail/res_id/1/tab_id/1",
+    "asset": "https://home.baidu.com/Public/img/logo.png?v=15"
+  },
+  "hony": {
+    "page": "https://www.honycapital.com/",
+    "asset": "https://www.google.com/s2/favicons?domain=honycapital.com&sz=128",
+    "type": "cached official site icon"
+  },
+  "citic": {
+    "page": "https://www.citics.com/",
+    "asset": "https://www.citics.com/newsite/ggmk/wztb/wzlogo/201803/W020180711560116478457.png"
+  },
+  "fosun": {
+    "page": "https://www.fosuncapital.com/",
+    "asset": "https://www.fosuncapital.com/static/css/main.3f204590.css",
+    "type": "embedded header logo"
+  },
+  "greenwoods": {
+    "page": "https://www.greenwoodsasset.com.cn/",
+    "asset": "https://www.greenwoodsasset.com.cn/static/images/05436d65c30217fbbb120de9f21bbcf2.png"
+  },
+  "qingtong": {
+    "page": "https://www.phoenixtree.com.cn/",
+    "asset": "https://www.google.com/s2/favicons?domain=phoenixtree.com.cn&sz=128",
+    "type": "cached official site icon"
+  },
+  "bytedance": {
+    "page": "https://www.bytedance.com/zh/",
+    "type": "embedded official site icon"
+  }
+}

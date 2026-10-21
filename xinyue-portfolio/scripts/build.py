@@ -1,5 +1,5 @@
 from pathlib import Path
-import html,json,re,base64,argparse,shutil
+import html,json,re,base64,argparse,shutil,posixpath
 from content import COMPANIES,EXTRA,EDU,COURSES,AWARDS,PROJECTS
 from connections import CATEGORIES,META,CAPABILITIES
 from illustrations import DIAGRAMS,generate
@@ -160,4 +160,22 @@ for f in D.rglob('index.html'):
 router=(A/'preview-router.js').read_text()
 preview='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>谢欣玥 · 个人网站 · 只读展示 v5</title><style>html,body{margin:0;width:100%;height:100%;background:#111b17}iframe#site{display:block;width:100%;height:100%;border:0}</style></head><body><iframe title="谢欣玥个人网站 / Xinyue Xie portfolio" id="site"></iframe><script>const pages='+json.dumps(pages,ensure_ascii=False,separators=(',',':')).replace('</script>','<\\/script>')+';'+router+'</script></body></html>'
 (ROOT/('preview.html' if FULL else 'public-preview.html')).write_text(preview)
+if not FULL:
+ # Relative URLs work both at a domain root and GitHub Pages' /repository/ path.
+ # The offline preview above keeps its own absolute-route map unchanged.
+ for f in D.rglob('index.html'):
+  parent=f.parent.relative_to(D).as_posix()
+  def relative_url(match):
+   attr,url=match.group(1),match.group(2)
+   path,fragment=(url.split('#',1)+[''])[:2] if '#' in url else (url,'')
+   relative=posixpath.relpath(path.lstrip('/') or '.',parent)
+   if path.endswith('/'):relative=('./' if relative=='.' else relative+'/')
+   return attr+'="'+relative+('#'+fragment if fragment else '')+'"'
+  markup=re.sub(r'\b(href|src|srcset|data-zh|data-en)="(/(?!/)[^"]*)"',relative_url,f.read_text())
+  f.write_text(markup)
+ (D/'.nojekyll').write_text('')
+ # GitHub's branch publisher serves only this audited public static directory.
+ docs=ROOT.parent/'docs'
+ if docs.exists():shutil.rmtree(docs)
+ shutil.copytree(D,docs)
 print('Built',len(pages),'routes;',('local full reading edition' if FULL else 'public showcase edition'),'; preview',round(len(preview)/1024),'KB')

@@ -39,9 +39,12 @@ def main():
    path=unquote(part.path);target=(DIST/path.lstrip('/')) if path.startswith('/') else f.parent/path
    if not path:target=f
    if target.is_dir():target=target/'index.html'
+   target=target.resolve()
+   target.relative_to(DIST.resolve())
    assert target.is_file(),f'{f}: missing {url}'
    if part.fragment:
-    assert target in pages and unquote(part.fragment) in pages[target].ids or part.fragment.startswith('category-'),f'{f}: missing anchor {url}'
+    target_doc=next((d for p,d in pages.items() if p.resolve()==target),None)
+    assert target_doc and unquote(part.fragment) in target_doc.ids or part.fragment.startswith('category-'),f'{f}: missing anchor {url}'
  for diagram in (DIST/'assets/diagrams').glob('*.svg'):
   ET.parse(diagram);assert 'READ ONLY' in diagram.read_text(),diagram
  metadata=[]
@@ -61,7 +64,14 @@ def main():
  preview=(ROOT/('preview.html' if FULL else 'public-preview.html')).read_text()
  assert not any(word in preview for word in ['XINYUE_WORKBOOK','workbook.json','application/pdf','sanxie-model.xlsx','xpeng-research.pdf'])
  assert not re.search(r'<a[^>]+\bdownload\b',preview)
- if not FULL:assert '/assets/readers/' not in preview and 'data-model-panel=' not in preview
+ if not FULL:
+  assert '/assets/readers/' not in preview and 'data-model-panel=' not in preview
+  for f in pages:assert not re.search(r'\b(?:href|src|srcset|data-zh|data-en)="/(?!/)',f.read_text()),f'Root URL breaks project hosting: {f}'
+  docs=ROOT.parent/'docs'
+  assert (docs/'.nojekyll').is_file()
+  expected={str(f.relative_to(DIST)):f.read_bytes() for f in DIST.rglob('*') if f.is_file()}
+  actual={str(f.relative_to(docs)):f.read_bytes() for f in docs.rglob('*') if f.is_file()}
+  assert actual==expected,'GitHub Pages output differs from audited public edition'
  print(f'PASS: {len(pages)} pages, all local links/anchors, contents targets, {len(metadata)} reading images, 32 diagram signatures, no downloadable originals or model data in dist/preview.')
 
 if __name__=='__main__':main()
