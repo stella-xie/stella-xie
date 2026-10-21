@@ -1,2 +1,24 @@
+# Local originals and working material must never enter repository history.
+/source-notes/
+/算力报告/
+/xinyue-portfolio/private-sources/
+/xinyue-portfolio/design/
+/xinyue-portfolio/dist/
+/xinyue-portfolio/preview.html
+/xinyue-portfolio/github-sync/
+**/__pycache__/
+*.pyc
 .DS_Store
+*.pdf
+*.xlsx
+*.xls
+*.docx
+*.pptx
+*.csv
+*.env
+.env*
+**/workbook.json
+**/original-resume.txt
+
+
 Thumbs.db
