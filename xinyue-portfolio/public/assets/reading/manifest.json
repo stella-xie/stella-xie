@@ -1,0 +1,310 @@
+{
+  "xpeng": {
+    "kind": "report",
+    "pages": [
+      {
+        "src": "/assets/reading/xpeng-001.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 1
+      },
+      {
+        "src": "/assets/reading/xpeng-002.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 2
+      },
+      {
+        "src": "/assets/reading/xpeng-003.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 3
+      },
+      {
+        "src": "/assets/reading/xpeng-004.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 4
+      },
+      {
+        "src": "/assets/reading/xpeng-005.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 5
+      },
+      {
+        "src": "/assets/reading/xpeng-006.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 6
+      },
+      {
+        "src": "/assets/reading/xpeng-007.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 7
+      },
+      {
+        "src": "/assets/reading/xpeng-008.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 8
+      },
+      {
+        "src": "/assets/reading/xpeng-009.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 9
+      },
+      {
+        "src": "/assets/reading/xpeng-010.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 10
+      },
+      {
+        "src": "/assets/reading/xpeng-011.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 11
+      },
+      {
+        "src": "/assets/reading/xpeng-012.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 12
+      },
+      {
+        "src": "/assets/reading/xpeng-013.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 13
+      },
+      {
+        "src": "/assets/reading/xpeng-014.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 14
+      },
+      {
+        "src": "/assets/reading/xpeng-015.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 15
+      },
+      {
+        "src": "/assets/reading/xpeng-016.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 16
+      },
+      {
+        "src": "/assets/reading/xpeng-017.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 17
+      },
+      {
+        "src": "/assets/reading/xpeng-018.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 18
+      },
+      {
+        "src": "/assets/reading/xpeng-019.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 19
+      },
+      {
+        "src": "/assets/reading/xpeng-020.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 20
+      },
+      {
+        "src": "/assets/reading/xpeng-021.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 21
+      },
+      {
+        "src": "/assets/reading/xpeng-022.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 22
+      },
+      {
+        "src": "/assets/reading/xpeng-023.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 23
+      },
+      {
+        "src": "/assets/reading/xpeng-024.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 24
+      },
+      {
+        "src": "/assets/reading/xpeng-025.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 25
+      },
+      {
+        "src": "/assets/reading/xpeng-026.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 26
+      }
+    ],
+    "total_pages": 26,
+    "excerpt": false,
+    "label": [
+      "小鹏汽车研究报告",
+      "XPeng research report"
+    ]
+  },
+  "sanxie": {
+    "kind": "report",
+    "pages": [
+      {
+        "src": "/assets/reading/sanxie-001.webp",
+        "width": 1867,
+        "height": 1087,
+        "original_page": 1
+      },
+      {
+        "src": "/assets/reading/sanxie-002.webp",
+        "width": 1867,
+        "height": 1087,
+        "original_page": 2
+      },
+      {
+        "src": "/assets/reading/sanxie-003.webp",
+        "width": 1867,
+        "height": 1087,
+        "original_page": 3
+      },
+      {
+        "src": "/assets/reading/sanxie-004.webp",
+        "width": 1867,
+        "height": 1087,
+        "original_page": 4
+      },
+      {
+        "src": "/assets/reading/sanxie-005.webp",
+        "width": 1867,
+        "height": 1087,
+        "original_page": 5
+      },
+      {
+        "src": "/assets/reading/sanxie-006.webp",
+        "width": 1867,
+        "height": 1087,
+        "original_page": 6
+      },
+      {
+        "src": "/assets/reading/sanxie-007.webp",
+        "width": 1867,
+        "height": 1087,
+        "original_page": 7
+      },
+      {
+        "src": "/assets/reading/sanxie-008.webp",
+        "width": 1867,
+        "height": 1087,
+        "original_page": 8
+      },
+      {
+        "src": "/assets/reading/sanxie-009.webp",
+        "width": 1867,
+        "height": 1087,
+        "original_page": 9
+      },
+      {
+        "src": "/assets/reading/sanxie-010.webp",
+        "width": 1867,
+        "height": 1087,
+        "original_page": 10
+      }
+    ],
+    "total_pages": 10,
+    "excerpt": false,
+    "label": [
+      "三协电机投资备忘录",
+      "Sanxie investment memo"
+    ]
+  },
+  "ai-compute": {
+    "kind": "report",
+    "pages": [
+      {
+        "src": "/assets/reading/ai-compute-003.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 3
+      },
+      {
+        "src": "/assets/reading/ai-compute-006.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 6
+      },
+      {
+        "src": "/assets/reading/ai-compute-009.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 9
+      },
+      {
+        "src": "/assets/reading/ai-compute-016.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 16
+      },
+      {
+        "src": "/assets/reading/ai-compute-017.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 17
+      },
+      {
+        "src": "/assets/reading/ai-compute-018.webp",
+        "width": 1158,
+        "height": 1675,
+        "original_page": 18
+      }
+    ],
+    "total_pages": 42,
+    "excerpt": true,
+    "label": [
+      "算力产业认知报告 · 公开节选",
+      "AI computing report · Public excerpts"
+    ]
+  },
+  "sanxie-model": {
+    "kind": "model",
+    "pages": [
+      {
+        "src": "/assets/reading/sanxie-model-001.webp",
+        "width": 1075,
+        "height": 4770,
+        "original_page": 1
+      },
+      {
+        "src": "/assets/reading/sanxie-model-002.webp",
+        "width": 1075,
+        "height": 644,
+        "original_page": 2
+      }
+    ],
+    "total_pages": 2,
+    "excerpt": true,
+    "label": [
+      "三协电机模型 · Quick LBO 关键页",
+      "Sanxie model · Quick LBO pages"
+    ]
+  }
+}

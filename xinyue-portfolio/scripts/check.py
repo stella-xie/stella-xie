@@ -48,21 +48,23 @@ def main():
  for diagram in (DIST/'assets/diagrams').glob('*.svg'):
   ET.parse(diagram);assert 'READ ONLY' in diagram.read_text(),diagram
  metadata=[]
- # Report images are local-only until a separate public-reading decision.
- public_reading_count=0
- if FULL:
-  copies=json.loads((DIST/'assets/reading/manifest.json').read_text())
-  assert set(copies)=={'xpeng','sanxie','ai-compute','sanxie-model'}
-  assert [len(copies[k]['pages']) for k in ['xpeng','sanxie','ai-compute','sanxie-model']]==[26,10,6,2]
-  for record in copies.values():
-   for item in record['pages']:
-    assert set(item)=={'src','width','height','original_page'}
-    path=DIST/item['src'].lstrip('/')
-    from PIL import Image
-    with Image.open(path) as image:assert image.size==(item['width'],item['height']) and not image.getexif()
- else:
-  assert not (DIST/'assets/reading').exists(),'Unapproved report images in public output'
-  for path in pages:assert '/assets/reading/' not in path.read_text(),path
+ # Only the selected watermarked/redacted image set is distributable.
+ copies=json.loads((DIST/'assets/reading/manifest.json').read_text())
+ assert set(copies)=={'xpeng','sanxie','ai-compute','sanxie-model'}
+ selected={'xpeng':list(range(1,27)),'sanxie':list(range(1,11)),
+           'ai-compute':[3,6,9,16,17,18],'sanxie-model':[1,2]}
+ expected=set()
+ from PIL import Image
+ for key,numbers in selected.items():
+  assert [p['original_page'] for p in copies[key]['pages']]==numbers
+  for item in copies[key]['pages']:
+   assert set(item)=={'src','width','height','original_page'}
+   assert item['src']==f'/assets/reading/{key}-{item["original_page"]:03}.webp'
+   path=DIST/item['src'].lstrip('/');expected.add(path.name)
+   assert path.read_bytes()==(ROOT/'assets/reading'/path.name).read_bytes()
+   with Image.open(path) as image:assert image.size==(item['width'],item['height']) and not image.getexif()
+ assert {p.name for p in (DIST/'assets/reading').iterdir()}==expected|{'manifest.json'}
+ public_reading_count=len(expected)
  if FULL:
   manifest=json.loads((DIST/'assets/readers/manifest.json').read_text())
   assert manifest['xpeng']['page_count']==26 and manifest['sanxie']['page_count']==10

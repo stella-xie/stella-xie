@@ -9,12 +9,9 @@ FULL=parser.parse_args().full
 ROOT=Path(__file__).resolve().parents[1];D=ROOT/('dist' if FULL else 'public');A=D/'assets'
 D.mkdir(exist_ok=True);shutil.copytree(ROOT/'assets',A,dirs_exist_ok=True)
 generate(A/'diagrams')
-READING_COPIES={}
-if FULL:
- shutil.copytree(ROOT/'private-sources/reading-copies',A/'reading',dirs_exist_ok=True)
- READING_COPIES=json.loads((A/'reading/manifest.json').read_text())
-elif (A/'reading').exists():
- shutil.rmtree(A/'reading')
+# Public, redacted and watermarked reading images are an explicit asset whitelist.
+# Original PDFs, workbooks and the complete model remain private.
+READING_COPIES=json.loads((A/'reading/manifest.json').read_text())
 if FULL:
  shutil.copytree(ROOT/'private-sources/readers',A/'readers',dirs_exist_ok=True)
  READERS=json.loads((A/'readers/manifest.json').read_text())
@@ -165,11 +162,11 @@ def workbook_reader():
 for pr in PROJECTS:
  id=pr['id'];buttons=''
  if pr.get('reading') in READING_COPIES:buttons=f'<a class="btn" href="#documents">{t("在线阅读报告","Read the report")} ↘</a>'
- if FULL and id=='sanxie':buttons+=f'<a class="btn secondary" href="#model">{t("浏览模型","Explore the model")} ↘</a>'
+ if id=='sanxie' and 'sanxie-model' in READING_COPIES:buttons+=f'<a class="btn secondary" href="#model">{t("浏览模型","Explore the model")} ↘</a>'
  body=f'<section class="page-top" data-scope="intro"><div class="top-line"><a class="breadcrumb" href="/portfolio/">← {t("返回作品集","BACK TO PORTFOLIO")}</a>{switch()}</div><div class="project-context-label">{t(*pr["type"])}</div><h1>{t(*pr["name"])}</h1>{p(*pr["sub"],"lede")}{buttons}</section>'+logic_section(pr)+project_abilities(pr)
- if FULL and pr.get('reading'):
+ if pr.get('reading') in READING_COPIES:
   body+=report_reader(pr) if FULL and id in ['xpeng','sanxie'] else reading_section(pr['reading'])
- if FULL and id=='sanxie':body+=workbook_reader() if FULL else reading_section('sanxie-model','model')
+ if id=='sanxie':body+=workbook_reader() if FULL else reading_section('sanxie-model','model')
  body+=p('谢欣玥 Xinyue Xie · 研究作品仅供在线阅读','Xinyue Xie · Research work for online reading only','print-readonly')
  body+='<a class="back-link" href="/portfolio/">← '+t('返回全部作品','Back to all work')+'</a>'
  target=D/'projects'/id;target.mkdir(exist_ok=True,parents=True);(target/'index.html').write_text(page(*pr['name'],body,'project-'+id))
