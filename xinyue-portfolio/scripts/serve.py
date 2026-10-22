@@ -9,6 +9,7 @@ class Handler(SimpleHTTPRequestHandler):
   if path=='/preview.html':return str(ROOT/('preview.html' if FULL else 'public-preview.html'))
   base=SERVE_ROOT
   if path.startswith('/dist/'):path=path[5:]
+  if path.startswith('/public/'):path=path[7:]
   target=(base/path.lstrip('/')).resolve()
   try:target.relative_to(base)
   except ValueError:return str(base/'not-found')

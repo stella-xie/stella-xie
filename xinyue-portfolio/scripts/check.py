@@ -48,6 +48,21 @@ def main():
  for diagram in (DIST/'assets/diagrams').glob('*.svg'):
   ET.parse(diagram);assert 'READ ONLY' in diagram.read_text(),diagram
  metadata=[]
+ # Report images are local-only until a separate public-reading decision.
+ public_reading_count=0
+ if FULL:
+  copies=json.loads((DIST/'assets/reading/manifest.json').read_text())
+  assert set(copies)=={'xpeng','sanxie','ai-compute','sanxie-model'}
+  assert [len(copies[k]['pages']) for k in ['xpeng','sanxie','ai-compute','sanxie-model']]==[26,10,6,2]
+  for record in copies.values():
+   for item in record['pages']:
+    assert set(item)=={'src','width','height','original_page'}
+    path=DIST/item['src'].lstrip('/')
+    from PIL import Image
+    with Image.open(path) as image:assert image.size==(item['width'],item['height']) and not image.getexif()
+ else:
+  assert not (DIST/'assets/reading').exists(),'Unapproved report images in public output'
+  for path in pages:assert '/assets/reading/' not in path.read_text(),path
  if FULL:
   manifest=json.loads((DIST/'assets/readers/manifest.json').read_text())
   assert manifest['xpeng']['page_count']==26 and manifest['sanxie']['page_count']==10
@@ -72,6 +87,16 @@ def main():
   expected={str(f.relative_to(DIST)):f.read_bytes() for f in DIST.rglob('*') if f.is_file()}
   actual={str(f.relative_to(docs)):f.read_bytes() for f in docs.rglob('*') if f.is_file()}
   assert actual==expected,'GitHub Pages output differs from audited public edition'
- print(f'PASS: {len(pages)} pages, all local links/anchors, contents targets, {len(metadata)} reading images, 32 diagram signatures, no downloadable originals or model data in dist/preview.')
+ # Editorial notes and personal phone details must not reach visitors.
+ for path in pages:
+  markup=path.read_text()
+  assert not any(term in markup for term in ['待你确认','审批稿','简历版本说明','原始版本差异','15508011207','155-0801-1207','公开展示只保留经确认']),path
+ portfolio=Document();portfolio.feed((DIST/'portfolio/index.html').read_text())
+ from content import COMPANIES,EXTRA,PROJECTS
+ assert len(COMPANIES)==6 and len(EXTRA)==2 and len(PROJECTS)==14
+ assert next(c for c in COMPANIES if c['id']=='citic')['date']=='2025.02 — 2025.07'
+ assert '4.6 倍' in str(next(c for c in COMPANIES if c['id']=='citic')['bullets'])
+ diagrams=len(list((DIST/'assets/diagrams').glob('*.svg')))
+ print(f'PASS: {len(pages)} routes, all links/anchors and analysis targets; {public_reading_count} public report images, {len(metadata)} private reading images, {diagrams} diagram signatures; 8 internships and 14 works; no downloadable originals or review notes.')
 
 if __name__=='__main__':main()
